@@ -27,14 +27,14 @@ pub async fn process_data(Json(request): Json<DataRequest>) -> impl IntoResponse
 }
 
 // Declare enum of DataItem to deserialize each element of data as either string or integer
-#[derive(Deserialize, Debug)]
+#[derive(Deserialize)]
 #[serde(untagged)]
 enum DataItem {
     String(String),
     Integer(i32),
 }
 
-#[derive(Deserialize, Debug)]
+#[derive(Deserialize)]
 pub struct DataRequest {
     data: Vec<DataItem>,
 }
