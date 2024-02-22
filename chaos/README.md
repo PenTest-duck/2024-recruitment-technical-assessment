@@ -32,15 +32,23 @@ Make sure to include foreign keys for the relationships that will `CASCADE` upon
 **Answer box:**
 ```sql
 CREATE TABLE forms (
-    --     Add columns here
+    id int PRIMARY KEY,
+    title text,
+    description text
 );
 
+CREATE TYPE question_type AS ENUM ('MultiChoice', 'MultiSelect', 'ShortAnswer');
 CREATE TABLE questions (
-    --     Add columns here
+    id int PRIMARY KEY,
+    form_id int REFERENCES forms(id) ON DELETE CASCADE,
+    title text,
+    question_type question_type
 );
 
 CREATE TABLE question_options (
-    --     Add columns here
+    id int PRIMARY KEY,
+    question_id int REFERENCES questions(id) ON DELETE CASCADE,
+    option text
 );
 ```
 
@@ -56,5 +64,9 @@ Using the above schema, write a (Postgres) SQL `SELECT` query to return all ques
 
 **Answer box:**
 ```sql
--- Write query here
+SELECT questions.id, questions.form_id, questions.title, questions.question_type, question_options.option
+FROM questions
+INNER JOIN question_options
+ON questions.id = question_options.question_id
+AND questions.form_id = 26583;
 ```
