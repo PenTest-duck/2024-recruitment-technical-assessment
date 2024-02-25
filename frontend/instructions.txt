@@ -1,2 +1,5 @@
 Please detail the instructions to view your solution here:
 
+1. cd unilectives-frontend/
+2. npm install
+3. npm start (will run on http://localhost:3000)

@@ -1,28 +1,31 @@
 import React from 'react';
-import logo from 'assets/unilectives.svg';
 import './App.css';
+
+import CoursesGrid from './components/courses-grid';
+import SearchBar from './components/search-bar';
+import SideBar from './components/side-bar';
+import SortFilter from './components/sort-filter';
+import Title from './components/title';
 
 function App() {
   return (
-    <div className="app">
-      
+    <div className="flex">
+      <div className="float-left">
+        <SideBar />
+      </div>
+      <div className="float-left flex-1 px-20 pt-6">
+        <Title />
+        <div className="mt-10">
+          <SearchBar />
+        </div>
+        <div className="mt-3">
+          <SortFilter />
+        </div>
+        <div className="mt-10">
+          <CoursesGrid />
+        </div>
+      </div>
     </div>
-    // <div className="App">
-    //   <header className="App-header">
-    //     <img src={logo} className="App-logo" alt="logo" />
-    //     <p>
-    //       Edit <code>src/App.tsx</code> and save to reload.
-    //     </p>
-    //     <a
-    //       className="App-link"
-    //       href="https://reactjs.org"
-    //       target="_blank"
-    //       rel="noopener noreferrer"
-    //     >
-    //       Learn React
-    //     </a>
-    //   </header>
-    // </div>
   );
 }
 
