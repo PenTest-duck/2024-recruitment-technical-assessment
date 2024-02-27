@@ -2,6 +2,7 @@ import React from 'react';
 import './App.css';
 
 import CoursesGrid from './components/courses-grid';
+import Modal from './components/modal';
 import SearchBar from './components/search-bar';
 import SideBar from './components/side-bar';
 import SortFilter from './components/sort-filter';
@@ -25,6 +26,7 @@ function App() {
           <CoursesGrid />
         </div>
       </div>
+      <Modal />
     </div>
   );
 }

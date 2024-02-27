@@ -1,8 +1,16 @@
 import { MagnifyingGlassIcon } from "@heroicons/react/24/outline";
 
 const SearchBar = () => {
+  const openModal = () => {
+    const modal = document.querySelector(".modal");
+    modal?.classList.remove("hidden");
+  }
+
   return (
-    <div className="flex items-center h-10 pl-4 border-solid border-2 border-search-border-blue rounded-md">
+    <div
+      className="flex items-center h-10 pl-4 border-solid border-2 border-search-border-blue rounded-md"
+      onClick={openModal}
+    >
       <form className="flex flex-1">
         <MagnifyingGlassIcon className="w-6 mr-3 text-search-border-blue" />
         <input 
