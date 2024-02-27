@@ -1,8 +1,9 @@
 # CHAOS Technical Task
 
-***Complete as many questions as you can.***
+**_Complete as many questions as you can._**
 
 ## Question 1
+
 You have been given a skeleton function `process_data` in the `data.rs` file.
 Complete the parameters and body of the function so that given a JSON request of the form
 
@@ -13,6 +14,7 @@ Complete the parameters and body of the function so that given a JSON request of
 ```
 
 the handler returns the following JSON:
+
 ```json
 {
   "string_len": 11,
@@ -25,11 +27,13 @@ Edit the `DataResponse` and `DataRequest` structs as you need.
 ## Question 2
 
 ### a)
+
 Write (Postgres) SQL `CREATE TABLE` statements to create the following schema.
 Make sure to include foreign keys for the relationships that will `CASCADE` upon deletion.
 ![Database Schema](db_schema.png)
 
 **Answer box:**
+
 ```sql
 CREATE TABLE forms (
     id int PRIMARY KEY,
@@ -53,7 +57,9 @@ CREATE TABLE question_options (
 ```
 
 ### b)
+
 Using the above schema, write a (Postgres) SQL `SELECT` query to return all questions in the following format, given the form id `26583`:
+
 ```
    id    |   form_id   |           title             |   question_type   |     options
 ------------------------------------------------------------------------------------------------------------
@@ -63,10 +69,17 @@ Using the above schema, write a (Postgres) SQL `SELECT` query to return all ques
 ```
 
 **Answer box:**
+
 ```sql
-SELECT questions.id, questions.form_id, questions.title, questions.question_type, question_options.option
+SELECT
+	questions.id,
+	questions.form_id,
+	questions.title,
+	questions.question_type,
+	array_agg(question_options.option) as options
 FROM questions
 INNER JOIN question_options
 ON questions.id = question_options.question_id
-AND questions.form_id = 26583;
+AND questions.form_id = 26583
+GROUP BY questions.id;
 ```
